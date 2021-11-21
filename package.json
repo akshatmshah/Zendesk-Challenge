@@ -1,0 +1,15 @@
+{
+  "name": "zendesk-challenge",
+  "description": "A ticket viewer for the Zendesk Coding Challenge.",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "ejs": "*",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "lru-cache": "*"
+  }
+}
