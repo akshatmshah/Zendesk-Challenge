@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/home.css">
+
 <div class="mx-6 mt-3">
 <h1 class="title">Tickets</h1>
 <p>There are currently <%=count%> ticket(s) and <%=ticketsArr[pageNum].length%> are shown</p>
@@ -9,13 +11,22 @@
     <div class="tile is-ancestor mb-2">
             <div class="tile is-12 is-vertical is-parent is-multiline">
             <% for (var i = 0; i < ticketsArr[pageNum].length; i++){ %>
-                <article class="tile is-child has-text-centered box ticket-box">
+                <article id="article" class="tile tile<%=i%> is-child has-text-centered box ticket-box">
                     <p class="title"><%=ticketsArr[pageNum][i].subject%></p>
                     <p class="subtitle"><%=ticketsArr[pageNum][i].opened_by%></p>
                     <div class="content">
                         <p><%=ticketsArr[pageNum][i].created_at%></p>
                     </div>
                 </article>
+                <div id="modal" class="modal modal<%=i%>"">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                        <div class="box">
+                            I'm in a box.
+                        </div>
+                    </div>
+                    <button class="modal-close is-large" aria-label="close"></button>
+                </div>
             <% } %>
             </div>
         </div>
@@ -37,7 +48,7 @@
                 </li>
             <% }else{ %>
                 <li>
-                    <a class="pagination-link" aria-label="Goto page "<%=pageNum%>><%=i+1%></a>
+                    <a class="pagination-link" aria-label="Go to page <%=i+1%>"<%=pageNum%>><%=i+1%></a>
                 </li>
             <% } %>
         <% } %>
@@ -45,4 +56,4 @@
     </nav>
 </div>
   
-
+<script src="js/ticketpopup.js"></script>
