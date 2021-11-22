@@ -15,22 +15,22 @@
     <div class="tile is-ancestor mb-2">
             <div class="tile is-12 is-vertical is-parent is-multiline">
             <% for (var i = 0; i < ticketsArr.length; i++){ %>
-                <article id="article" class="tile tile<%=i%> is-child has-text-centered box ticket-box">
+                <article id="<%=i%>" onclick="addModal(this)" class="tile tickets is-child has-text-centered box ticket-box">
                     <p class="title"><%=ticketsArr[i].subject%></p>
                     <p class="subtitle"><%=ticketsArr[i].opened_by%></p>
                     <div class="content">
                         <p><%=ticketsArr[i].created_at%></p>
                     </div>
                 </article>
-                <div id="modal" class="modal modal<%=i%>"">
-                    <div class="modal-background"></div>
+                <div id="modal <%=i%>" class="modal">
+                    <div id = 'background <%=i%>' class="modal-background"></div>
                     <div class="modal-content">
                         <div class="box">
                             I'm in a box.
                             <p><%=i%></p>
                         </div>
                     </div>
-                    <button class="modal-close is-large" aria-label="close"></button>
+                    <button id="modal-close <%=i%>" class="modal-close is-large" aria-label="close"></button>
                 </div>
             <% } %>
             </div>
