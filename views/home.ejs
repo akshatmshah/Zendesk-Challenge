@@ -1,1 +1,11 @@
-<h1>Beginning</h1>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<h1>Tickets</h1>
+<script></script>
+<p>There are currently <%=count%> ticket(s) and <%=ticketsArr[pageNum].length%> are shown.></p>
+<% for (var i = 0; i < ticketsArr.length; i++){ %>
+    <hr>
+    <%=ticketsArr[pageNum][i].subject%>
+    <%=ticketsArr[pageNum][i].opened_by%>
+    <%=ticketsArr[pageNum][i].created_at%>
+<% } %>
