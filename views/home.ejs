@@ -5,17 +5,21 @@
 
 <div class="mx-6 mt-3">
 <h1 class="title">Tickets</h1>
-<p>There are currently <%=count%> ticket(s) and <%=ticketsArr[pageNum].length%> are shown</p>
 <hr>
+
+<span id='currentPage' hidden>
+    <%= JSON.stringify(pageNum); %>
+</span>
+
 <container class="container">
     <div class="tile is-ancestor mb-2">
             <div class="tile is-12 is-vertical is-parent is-multiline">
-            <% for (var i = 0; i < ticketsArr[pageNum].length; i++){ %>
+            <% for (var i = 0; i < ticketsArr.length; i++){ %>
                 <article id="article" class="tile tile<%=i%> is-child has-text-centered box ticket-box">
-                    <p class="title"><%=ticketsArr[pageNum][i].subject%></p>
-                    <p class="subtitle"><%=ticketsArr[pageNum][i].opened_by%></p>
+                    <p class="title"><%=ticketsArr[i].subject%></p>
+                    <p class="subtitle"><%=ticketsArr[i].opened_by%></p>
                     <div class="content">
-                        <p><%=ticketsArr[pageNum][i].created_at%></p>
+                        <p><%=ticketsArr[i].created_at%></p>
                     </div>
                 </article>
                 <div id="modal" class="modal modal<%=i%>"">
@@ -23,6 +27,7 @@
                     <div class="modal-content">
                         <div class="box">
                             I'm in a box.
+                            <p><%=i%></p>
                         </div>
                     </div>
                     <button class="modal-close is-large" aria-label="close"></button>
@@ -33,22 +38,29 @@
     </div>
 </container>
   
-        
-        
-
 
     <nav class="pagination mx-6 mb-3" role="navigation" aria-label="pagination">
-        <a class="pagination-previous is-disabled" title="This is the first page">Previous</a>
-        <a class="pagination-next">Next page</a>
+
+        <% if (pageNum != 1){ %>
+            <a class="pagination-previous" >Previous</a>
+        <% } else { %>
+            <a class="pagination-previous" disabled>Previous</a>
+        <% } %>
+        
+        <% if (pageNum != pages){ %>
+            <a class="pagination-next">Next page</a>
+        <% } else { %>
+            <a class="pagination-next" disabled>Next page</a>    
+        <% } %>
         <ul class="pagination-list">
-        <% for (var i = 0; i < ticketsArr.length; i++){ %>
+        <% for (var i = 1; i <= pages; i++){ %>
             <% if (pageNum == i){ %>
                 <li>
-                    <a class="pagination-link is-current" aria-label="Page" aria-current="page"><%=i+1%></a>
+                    <a href="/?page=<%=i%>" class="pagination-link is-current" aria-label="Page" aria-current="page"><%=i%></a>
                 </li>
             <% }else{ %>
                 <li>
-                    <a class="pagination-link" aria-label="Go to page <%=i+1%>"<%=pageNum%>><%=i+1%></a>
+                    <a href="/?page=<%=i%>" class="pagination-link" aria-label="Go to page <%=i%>"><%=i%></a>
                 </li>
             <% } %>
         <% } %>
@@ -57,3 +69,4 @@
 </div>
   
 <script src="js/ticketpopup.js"></script>
+<script src="js/pagination.js"></script>

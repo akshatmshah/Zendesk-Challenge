@@ -3,6 +3,8 @@ $(document).ready(() => {
     var modalArr = document.getElementsByClassName("modal");
     var backgroundModalsArr = document.getElementsByClassName('modal-background');
     var modelCloseArr = document.getElementsByClassName('modal-close');
+
+    //we take each modal and each tile and assign then to ticket desc.
     for(var i = 0; i < modalArr.length; i++){
             var currClasses = modalArr[i].classList;
 

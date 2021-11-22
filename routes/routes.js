@@ -3,7 +3,6 @@ const { request, json } = require('express');
 var express = require('express');
 var axios = require('axios');
 
-
 //request to get tickets body
 var request_body = function(callback){
   axios.get(domain,{
@@ -26,10 +25,10 @@ var paginate = function (arr, size) {
 
 
 /* GET home page. */
-var homepage = function(req, res1){
+var homepage = function(req, pageRes){
   request_body((res)=>{
-    var tickets = res.data.tickets;
     var ticketsArr = [];
+    var tickets = res.data.tickets;
     //we only want the neccesary information and compile it into a dict.
     tickets.forEach(element => {
       var ticket = {
@@ -41,11 +40,18 @@ var homepage = function(req, res1){
       }
       ticketsArr.push(ticket);
     })
-      //we send the page, the total number of tickets, and the current page the user is on.
-      res1.render('home.ejs', {ticketsArr : paginate(ticketsArr, 25), count : res.data.count, pageNum : 0})
-  })
-};
+      var page = req.query.page;
+      var pagedArr = paginate(ticketsArr, 25);
 
+      //we send the page, the total number of tickets, and the current page the user is on.
+      if(page>0 && (page <= pagedArr.length)){
+
+        pageRes.render('home.ejs', {ticketsArr : pagedArr[page-1], pages : pagedArr.length, pageNum : page})
+      }else{
+        pageRes.render('home.ejs', {ticketsArr : pagedArr[0], pages : pagedArr.length, pageNum : 1})
+      }
+    }) 
+};
 
 
 var routes = {
