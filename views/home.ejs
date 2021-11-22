@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<h1>Tickets</h1>
-<script></script>
-<p>There are currently <%=count%> ticket(s) and <%=ticketsArr[pageNum].length%> are shown.></p>
-<% for (var i = 0; i < ticketsArr.length; i++){ %>
-    <hr>
-    <%=ticketsArr[pageNum][i].subject%>
-    <%=ticketsArr[pageNum][i].opened_by%>
-    <%=ticketsArr[pageNum][i].created_at%>
-<% } %>
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<div class="mx-6 mt-3">
+<h1 class="title">Tickets</h1>
+<p>There are currently <%=count%> ticket(s) and <%=ticketsArr[pageNum].length%> are shown</p>
+<hr>
+<container class="container">
+    <div class="tile is-ancestor mb-2">
+            <div class="tile is-12 is-vertical is-parent is-multiline">
+            <% for (var i = 0; i < ticketsArr[pageNum].length; i++){ %>
+                <article class="tile is-child has-text-centered box ticket-box">
+                    <p class="title"><%=ticketsArr[pageNum][i].subject%></p>
+                    <p class="subtitle"><%=ticketsArr[pageNum][i].opened_by%></p>
+                    <div class="content">
+                        <p><%=ticketsArr[pageNum][i].created_at%></p>
+                    </div>
+                </article>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</container>
+  
+        
+        
+
+
+    <nav class="pagination mx-6 mb-3" role="navigation" aria-label="pagination">
+        <a class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+        <% for (var i = 0; i < ticketsArr.length; i++){ %>
+            <% if (pageNum == i){ %>
+                <li>
+                    <a class="pagination-link is-current" aria-label="Page" aria-current="page"><%=i+1%></a>
+                </li>
+            <% }else{ %>
+                <li>
+                    <a class="pagination-link" aria-label="Goto page "<%=pageNum%>><%=i+1%></a>
+                </li>
+            <% } %>
+        <% } %>
+        </ul> 
+    </nav>
+</div>
+  
+
