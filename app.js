@@ -24,7 +24,6 @@
   app.use(function (err, req, res, next) {
     message = "Hmmm. It seems something went wrong! Try again." 
                 +" If this persists, contact a server admin!"
-    console.error(err.stack)
     res.status(500).redirect("/?message="+encodeURIComponent(message));
   })
 
