@@ -7,6 +7,8 @@ const e = require('express');
 
 //request to get tickets body
 var request_body = function(callback, error){
+  //if undefined then set to empty
+
   axios.get(domain,{
     auth: {
       username: username,
@@ -60,18 +62,19 @@ var homepage = function(req, pageRes){
             if (page == null){
               pageRes.render('home.ejs', {ticketsArr : pagedArr[0], pages : pagedArr.length, pageNum : 1, message: req.query.message});
             }else{
-              var message = "It seems like you tried to enter an invalid query in the URL! You were redirected to the first page."
+              var message = "It seems like you tried to enter an invalid query in the URL! You were redirected to the first page.";
               pageRes.redirect("/?message="+encodeURIComponent(message));
             }
           }
     }, (err)=>{
-      pageRes.render('error.ejs', {status: err.response.status, message: JSON.stringify(err.response.data)});
+        //unauthenticated
+        pageRes.status(401).render('error.ejs', {status: err.response.status, message: JSON.stringify(err.response.data)});
     })
 };
 
 
 var routes = {
   get_homepage : homepage
-}
+};
 
 module.exports = routes;

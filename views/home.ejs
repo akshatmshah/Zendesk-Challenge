@@ -16,19 +16,33 @@
             <div class="tile is-12 is-vertical is-parent is-multiline">
                 <% for (var i = 0; i < ticketsArr.length; i++){ %>
                     <span class='mb-3'>
-                        <article id="<%=i%>" onclick="addModal(this)" class="tile is-child has-text-centered box ticket-box">
-                            <p class="title"><%=ticketsArr[i].subject%></p>
-                            <p class="subtitle">Created at: <%=ticketsArr[i].created_at%></p>
-                        </article>
+                        <div class="article-block"> 
+                            <% if (!ticketsArr[i].priority){ %>
+                                <article id="<%=i%>" onclick="addModal(this)" class="tile is-child has-text-centered box ticket-box">
+                                    <p class="title"><%=ticketsArr[i].subject%></p>
+                                    <p class="subtitle">Created at: <%=ticketsArr[i].created_at%></p>
+                                </article>
+                            <% }else{ %>
+                                <article id="<%=i%>" onclick="addModal(this)" class="tile is-child has-text-centered box priority-ticket-box">
+                                    <button class="button  priority-button mt-0 is-danger no-hover">priority</button>
+                                    <p class="title"><%=ticketsArr[i].subject%></p>
+                                    <p class="subtitle">Created at: <%=ticketsArr[i].created_at%></p>
+                                </article>
+                            <% } %>
+                        </div>
                     </span>
                     <div id="modal <%=i%>" class="modal ">
                         <div id = 'background <%=i%>' class="modal-background"></div>
-                        <div class="modal-content">
+                        <div class="modal-content has-text-centered">
                             <div class="box ml-4">
-                                <p class="title"><%=ticketsArr[i].subject%></h1>
-                                <p class="subtitle">Opened by <%=ticketsArr[i].opened_by%> at <%=ticketsArr[i].created_at%></p>
+                                <p class="title has-text-weight-bold"><%=ticketsArr[i].subject%></h1>
+                                <p class="subtitle mb-1 has-text-weight-semibold"><%=ticketsArr[i].created_at%></p>
+                                <p class="subtitle mt-0 has-text-weight-medium">Opened by <%=ticketsArr[i].opened_by%></p>
                                 <p><%=ticketsArr[i].description%></p>
                                 <div class="tags are-small mt-3">
+                                    <% if (ticketsArr[i].priority){ %>
+                                        <span class="tag is-danger"><%=ticketsArr[i].priority%></span>
+                                    <% } %>
                                     <% for (var j = 0; j < (ticketsArr[i].tags).length; j++){ %>
                                         <span class="tag is-info"><%=ticketsArr[i].tags[j]%></span>
                                     <% } %>

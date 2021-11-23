@@ -3,3 +3,21 @@
 .ticket-box{
     border: 2px solid #174287;
 }
+
+.priority-ticket-box{
+    border: 2px solid #FF3860;
+}
+
+.priority-button{
+    position:absolute;
+    top: 10%;
+    left: 0.7%;
+}
+
+.article-block{
+    position:relative;
+}
+
+.noHover{
+    pointer-events: none;
+}
