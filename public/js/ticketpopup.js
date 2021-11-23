@@ -21,5 +21,4 @@ function addModal(element){
         html.classList.remove('is-clipped');
         model.classList.remove('is-active');
     })
-
 }

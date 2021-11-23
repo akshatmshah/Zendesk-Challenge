@@ -1,2 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+.ticket-box{
+    border: 2px solid #174287;
+}
