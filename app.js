@@ -23,6 +23,7 @@ app.get("/", function(req, res) {
 
 // Handling 500 (Internal Server Error)
 app.use(function (err, req, res, next) {
+  console.log(err);
   message = "Hmmm. It seems something went wrong! Try again."
     + " If this persists, contact a server admin!"
   res.status(500).send(message);
