@@ -3,20 +3,14 @@ var routes = require('./routes/routes.js');
 var cookieParser = require('cookie-parser');
 var app = express();
 
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.json());
 app.use(express.static('public'));
 
 //homepage route -- linked to homepage in routes.js
 app.get("/", function(req, res) {
   if (!req.query.page && !req.query.message){
-    // console.log("query for page " + req.query.page + ".");
-    // console.log("go to tickets");
     routes.fetch_tickets(req, res);
   }else{
-    // console.log("Message query: " + req.query.message);
-    // console.log("go to pages: " + JSON.stringify(req.query.page) + ".");
     routes.get_page(req, res);
   }
 })

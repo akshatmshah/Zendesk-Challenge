@@ -1,12 +1,22 @@
-const { render } = require('ejs');
-const { request, json } = require('express');
 var axios = require('axios');
-const e = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
+
 var ticketsArr = [];
 
 //request to get tickets body
 var request_body = function (callback, error) {
-  // add validation if the environment variables aren't set, throw a human readable error
+  var domain = "";
+  var username = "";
+  var password = "";
+
+  if(("DOMAIN" in process.env && "USERNAME" in process.env && "PASSWORD" in process.env)){
+    domain = process.env.DOMAIN;
+    username = process.env.USERNAME; 
+    password = process.env.PASSWORD;
+  }
+
+
   axios.get(domain, {
     auth: {
       username: username,
@@ -81,7 +91,7 @@ var fetch_tickets = function (req, pageRes) {
       pageRes.status(408).send(message);
     } else {
       //unauthenticated
-      pageRes.status(401).render('error.ejs', { status: err.response.status, message: JSON.stringify(err.response.data) });
+      pageRes.status(err.response.status).send(err.response.data);
     }
   }));
 };
