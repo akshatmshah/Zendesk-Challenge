@@ -2,3 +2,10 @@
 <div>
     <p class="is-error"><%=message%></p>
 </div>
+
+<% if (message != null) { %>
+    <script language="javascript">
+        window.location.href = "/?page=1";
+        alert("<%= message %>");
+    </script>
+<% } %>

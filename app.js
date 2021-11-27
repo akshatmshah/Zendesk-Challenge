@@ -11,12 +11,12 @@ app.use(express.static('public'));
 //homepage route -- linked to homepage in routes.js
 app.get("/", function(req, res) {
   if (!req.query.page && !req.query.message){
-    console.log("query for page " + req.query.page + ".");
-    console.log("go to tickets");
+    // console.log("query for page " + req.query.page + ".");
+    // console.log("go to tickets");
     routes.fetch_tickets(req, res);
   }else{
-    console.log("Message query: " + req.query.message);
-    console.log("go to pages: " + JSON.stringify(req.query.page) + ".");
+    // console.log("Message query: " + req.query.message);
+    // console.log("go to pages: " + JSON.stringify(req.query.page) + ".");
     routes.get_page(req, res);
   }
 })
@@ -34,8 +34,8 @@ app.use(function (req, res, next) {
   var message = "Sorry, the page you requested cannot be found."
     + " Double check to ensure you tried accessing the correct page."
     + " In the meantime, I will send you back to the homepage.";
-  res.status(404).redirect("/?message=" + encodeURIComponent(message));
+  res.status(404).render('error.ejs', {message: message});
 })
 
-app.listen(8080);
 console.log('Server running on port 8080. Now open http://localhost:8080/ in your browser!');
+module.exports = app.listen(8080);
