@@ -20,7 +20,7 @@ app.use(function (err, req, res, next) {
   console.log(err);
   message = "Hmmm. It seems something went wrong! Try again."
     + " If this persists, contact a server admin!"
-  res.status(500).send(message);
+  res.status(500).render('error.ejs', {status: "500", message: message});
 })
 
 //Handling 404
@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
   var message = "Sorry, the page you requested cannot be found."
     + " Double check to ensure you tried accessing the correct page."
     + " In the meantime, I will send you back to the homepage.";
-  res.status(404).render('error.ejs', {message: message});
+  res.status(404).render('error.ejs', {status: '404', message: message});
 })
 
 console.log('Server running on port 8080. Now open http://localhost:8080/ in your browser!');

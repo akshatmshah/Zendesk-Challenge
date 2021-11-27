@@ -1,11 +1,19 @@
-<link rel="stylesheet" type="text/css" href="css/home.css">
-<div>
-    <p class="is-error"><%=message%></p>
-</div>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/home.css">
+<section class="hero is-full-height">
+    <div class="hero-body has-text-centered">
+      <p class="title ">
+        <%=status%>
+      </p>
+      <p class="subtitle">
+        <%=message%>
+      </p>
+      <% if (status == '404'){ %>
+        <a href="/">Back to Home</a>
+      <% } %>
+    </div>
+  </section>
 
-<% if (message != null) { %>
-    <script language="javascript">
-        window.location.href = "/?page=1";
-        alert("<%= message %>");
-    </script>
-<% } %>
+

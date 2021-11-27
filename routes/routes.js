@@ -52,11 +52,11 @@ var get_page = function(req, res){
     }else{
       //we send the page, the total number of tickets, and the current page the user is on.
       if (page > 0 && (page <= ticketsArr.length)) {
-        res.render('home.ejs', { ticketsArr: ticketsArr[page - 1], pages: ticketsArr.length, pageNum: page, message: req.query.message });
+        res.render('home.ejs', { ticketsArr: ticketsArr[page - 1], pages: ticketsArr.length, pageNum: page});
       } else {
         //go back to the first page if user tries to go back or forward a page
-        var message = "It seems like you tried to enter an invalid query in the URL! You were redirected to the first page.";
-        res.status(404).render('error.ejs', {message: message });
+        var message = "Sorry, the page you requested doesn't seem to exist";
+        res.status(404).render('error.ejs', {status: "404", message: message});
       }
     }
 }
@@ -87,11 +87,10 @@ var fetch_tickets = function (req, pageRes) {
     //if there is no response we can't connect to the API
     if (typeof err.response == 'undefined') {
       message = "Request Timeout: Unable to connect to the ZenDesk API";
-      //400 or 408
-      pageRes.status(408).send(message);
+      pageRes.status(408).render('error.ejs', {status: "408", message: message});
     } else {
-      //unauthenticated
-      pageRes.status(err.response.status).send(err.response.data);
+      //unauthenticated 
+      pageRes.status(err.response.status).render('error.ejs', {status: err.response.status, message: JSON.stringify(err.response.data)});
     }
   }));
 };
@@ -103,4 +102,4 @@ var routes = {
 };
 
 module.exports = routes;
-module.exports.functions = paginate;
+module.exports.paginate = paginate;
