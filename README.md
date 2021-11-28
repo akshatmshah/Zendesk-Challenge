@@ -3,9 +3,9 @@
 <div align="center"
 
 <h1 align="center">Zendesk 2021 Coding Challenge</h1>
- <p align="center">
+<p align="center">
     A simple ticket viewer that connects to the Zendesk API to retrieve tickets and display them.
-
+</p>
 
 
 <!-- TABLE OF CONTENTS -->
