@@ -1,6 +1,5 @@
 
 <div id="top"></div>
-<div align="center"
 
 <h1 align="center">Zendesk 2021 Coding Challenge</h1>
 <p align="center">
@@ -142,19 +141,19 @@ To get a local copy up and running follow these simple example steps.
    After running the application it will run at "http://localhost:8080/". 
    
   #### Homepage
-![alt text](<images/homepage>)
+![alt text](<images/homepage.png>)
   #### Paging
-  ![alt text](<images/pagination>)
+  ![alt text](<images/pagination.png>)
    #### Ticket Details
-   ![alt text](<images/popup>)
+   ![alt text](<images/popup.png>)
    #### Errors 
-  ![alt text](<images/401error>)
+  ![alt text](<images/401error.png>)
   
-  ![alt text](<images/404error>)
+  ![alt text](<images/404error.png>)
   
-  ![alt text](<images/408error>)
+  ![alt text](<images/408error.png>)
   
-  ![alt text](<images/500error>)
+  ![alt text](<images/500error.png>)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
