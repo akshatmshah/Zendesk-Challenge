@@ -44,7 +44,7 @@
                                 <p class="subtitle mt-0 has-text-weight-medium">Opened by <%=ticketsArr[i].opened_by%></p>
                                 <p><%=ticketsArr[i].description%></p>
                                 <div class="tags are-small mt-3">
-                                    <% if (ticketsArr[i].priority == 'Urgent'){ %>
+                                    <% if (ticketsArr[i].priority == 'urgent'){ %>
                                         <span class="tag is-danger"><%=ticketsArr[i].priority%></span>
                                     <% }else if(ticketsArr[i].priority){ %>
                                         <span class="tag is-warning"><%=ticketsArr[i].priority%></span>
