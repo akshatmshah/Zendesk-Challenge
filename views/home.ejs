@@ -18,18 +18,21 @@
                 <% for (var i = 0; i < ticketsArr.length; i++){ %>
                     <span class='mb-3'>
                         <div class="article-block"> 
-                            <% if (!ticketsArr[i].priority){ %>
                                 <article id="<%=i%>" onclick="addModal(this)" class="tile is-child has-text-centered box ticket-box">
+                                    <% if (ticketsArr[i].priority == 'urgent'){ %>
+                                        <button class="button  priority-button is-danger mt-0 no-hover"><%=ticketsArr[i].priority%></button>
+                                    <% }else if(ticketsArr[i].priority){ %>
+                                        <button class="button  priority-button is-warning mt-0 no-hover"><%=ticketsArr[i].priority%></button>
+                                    <% } %>
+                                    <% if (ticketsArr[i].type){ %>
+                                        <button class="button type-button is-success mt-0 no-hover"><%=ticketsArr[i].type%></button>
+                                    <% } %>
+                                    <% if (ticketsArr[i].status){ %>
+                                        <button class="button status-button is-link mt-0 no-hover"><%=ticketsArr[i].status%></button>
+                                    <% } %>
                                     <p class="title"><%=ticketsArr[i].subject%></p>
                                     <p class="subtitle">Created at: <%=ticketsArr[i].created_at%></p>
                                 </article>
-                            <% }else{ %>
-                                <article id="<%=i%>" onclick="addModal(this)" class="tile is-child has-text-centered box priority-ticket-box">
-                                    <button class="button  priority-button mt-0 is-danger no-hover">priority</button>
-                                    <p class="title"><%=ticketsArr[i].subject%></p>
-                                    <p class="subtitle">Created at: <%=ticketsArr[i].created_at%></p>
-                                </article>
-                            <% } %>
                         </div>
                     </span>
                     <div id="modal <%=i%>" class="modal ">
@@ -41,8 +44,13 @@
                                 <p class="subtitle mt-0 has-text-weight-medium">Opened by <%=ticketsArr[i].opened_by%></p>
                                 <p><%=ticketsArr[i].description%></p>
                                 <div class="tags are-small mt-3">
-                                    <% if (ticketsArr[i].priority){ %>
+                                    <% if (ticketsArr[i].priority == 'Urgent'){ %>
                                         <span class="tag is-danger"><%=ticketsArr[i].priority%></span>
+                                    <% }else if(ticketsArr[i].priority){ %>
+                                        <span class="tag is-warning"><%=ticketsArr[i].priority%></span>
+                                    <% } %>
+                                    <% if (ticketsArr[i].type){ %>
+                                        <span class="tag is-link"><%=ticketsArr[i].type%></span>
                                     <% } %>
                                     <% for (var j = 0; j < (ticketsArr[i].tags).length; j++){ %>
                                         <span class="tag is-info"><%=ticketsArr[i].tags[j]%></span>

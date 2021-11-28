@@ -13,6 +13,17 @@
     top: 10%;
     left: 0.7%;
 }
+.type-button{
+    position:absolute;
+    top: 10%;
+    left: 7%;
+}
+
+.status-button{
+    position:absolute;
+    top: 10%;
+    left: 95%;
+}
 
 .article-block{
     position:relative;

@@ -1,9 +1,7 @@
 var express = require('express');
 var routes = require('./routes/routes.js');
-var cookieParser = require('cookie-parser');
 var app = express();
 
-app.use(cookieParser());
 app.use(express.static('public'));
 
 //homepage route -- linked to homepage in routes.js

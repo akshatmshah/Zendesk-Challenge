@@ -76,6 +76,8 @@ var fetch_tickets = function (req, pageRes) {
         description: element.description,
         tags: element.tags,
         priority: element.priority,
+        type: element.type,
+        status: element.status
       }
       ticketsArr.push(ticket);
     })
