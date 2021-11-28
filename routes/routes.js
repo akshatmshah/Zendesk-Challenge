@@ -11,7 +11,8 @@ var request_body = function (callback, error) {
   var password = "";
 
   if(("DOMAIN" in process.env && "USERNAME" in process.env && "PASSWORD" in process.env)){
-    domain = process.env.DOMAIN;
+    
+    domain = 'https://'+process.env.DOMAIN+'.zendesk.com/api/v2/tickets.json?sort_by=created_at?sort_order=desc';
     username = process.env.USERNAME; 
     password = process.env.PASSWORD;
   }
